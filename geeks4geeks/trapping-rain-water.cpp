@@ -12,24 +12,35 @@ int main()
   cin >> testCases;
   while (testCases--)
   {
-    /* code */
-    int size, totalWater = 0, maxValue = 0, minSide = 0;
+
+    int size, totalWater = 0, leftMax = 0, rightMax = 0, minSide = 0;
     cin >> size;
-    int arr[size], maxLeft[size], maxRight[size];
+    int arr[size];
     
     loop (0,size)
       cin >> arr[i];
     
-    maxLeft[0] = arr[0];
-    loop(1,size) maxLeft[i] = max(arr[i],maxLeft[i-1]);
+    leftMax = arr[0];
     
-    maxRight[size-1] = arr[size-1];
-    for(int i = size-2; i>=0; i--) maxRight[i] = max(arr[i],maxRight[i+1]);
+    rightMax = arr[size-1];
 
-    loop(0,size)
+    int l = 0, r = size-1;
+    while(l<=r)
     {
-      minSide = min(maxLeft[i],maxRight[i]);
-      totalWater += minSide - arr[i];
+      rightMax = max(rightMax,arr[r]);
+      leftMax = max(leftMax,arr[l]);
+
+      if(rightMax<=leftMax)
+      {
+        totalWater += rightMax - arr[r];
+        r--;
+      }
+      else
+      {
+        totalWater += leftMax - arr[l];
+        l++;
+      }
+      
     }
     cout<<totalWater<<endl;
   }
