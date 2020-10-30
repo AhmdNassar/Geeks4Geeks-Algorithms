@@ -16,22 +16,11 @@ bool sortPairs(pair<ull,int> a, pair<ull,int> b)
 
 int main()
 {
-    int n, lidx = 1, ridx, colorIdx = 1;
+    int n;
     string colors = "ROYGBIV";
 
     cin>>n;
-
-    string out = string(n, 'R');
-    ridx = n - 1;
-    while(lidx <= ridx)
-    {
-        out[lidx++] = colors[colorIdx++];
-        colorIdx %= 7;
-        if(lidx < ridx)
-            out[ridx--] = colors[colorIdx++];
-        colorIdx %= 7;
-    }
-    // 2-5 3-5 4-4
-    // RRRRRRR
-    cout<<out<<endl;
+    lo(n/7) cout<<colors;
+    lo(n%7) cout<<colors[k%4 + 3];
+    cout<<endl;
 }
